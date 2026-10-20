@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Первые идеи для контента — Алина Греммельспахер</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F5F1F3; --ink:#2B2230; --muted:#7A6E7E; --line:#E6DDE3; --card:#FFFFFF;
+  --c0:#B5697A; --t0:#F7EDEF;
+  --c1:#4C5B8C; --t1:#EEF0F7;
+  --c2:#6B4E71; --t2:#F4EEF4;
+  --c3:#5E8763; --t3:#EDF4EE;
+  --c4:#A0683F; --t4:#FBF1E8;
+  --c5:#4F7F86; --t5:#EBF2F1;
+  --fs:17px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:"Onest",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:var(--fs);line-height:1.6}
+.app{display:flex;min-height:100vh}
+aside{width:300px;flex:none;position:sticky;top:0;height:100vh;overflow-y:auto;padding:28px 18px 24px;border-right:1px solid var(--line);background:#FBF8FA}
+.brand{font-weight:600;font-size:15px;line-height:1.35;margin:0 8px 22px;color:var(--ink)}
+.brand small{display:block;color:var(--muted);font-weight:400;margin-top:4px}
+.nb{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:none;border:0;padding:10px 10px;border-radius:12px;font:inherit;font-size:15px;color:var(--ink);cursor:pointer}
+.nb:hover{background:#F1EAEF}
+.nb .n{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:600;background:var(--line);color:var(--muted)}
+.ni.on .nb{background:var(--t);font-weight:600}
+.ni.on .nb .n{background:var(--c);color:#fff}
+.subs{display:none;padding:2px 0 8px 50px}
+.ni.on .subs{display:block}
+.sub{display:block;font-size:13.5px;color:var(--muted);text-decoration:none;padding:4px 6px;border-radius:8px;line-height:1.35}
+.sub:hover{color:var(--ink);background:#F1EAEF}
+.tools{margin:22px 8px 0;display:flex;gap:8px;align-items:center;font-size:13px;color:var(--muted)}
+.tools button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:4px 10px;font:inherit;cursor:pointer;color:var(--ink)}
+main{flex:1;min-width:0;padding:40px 48px 80px}
+.pg{display:none;max-width:860px;margin:0 auto;background:var(--card);border-radius:20px;padding:44px 52px 40px;border-top:6px solid var(--c)}
+.pg.on{display:block}
+h1,h2{font-weight:700;line-height:1.2;margin:0 0 24px;letter-spacing:-.01em}
+h1{font-size:2em}
+h2{font-size:1.75em;color:var(--c)}
+h3{font-size:1.2em;font-weight:600;margin:38px 0 12px;padding-top:22px;border-top:1px solid var(--line);scroll-margin-top:24px}
+h4{font-size:1.05em;font-weight:600;margin:24px 0 10px}
+h2+h3{border-top:0;padding-top:0;margin-top:8px}
+p{margin:0 0 14px}
+b{font-weight:600}
+ul,ol{margin:0 0 16px;padding-left:1.4em}
+li{margin:0 0 8px}
+ul li::marker{color:var(--c)}
+ol li::marker{color:var(--c);font-weight:600}
+.note{background:var(--t);border-left:4px solid var(--c);border-radius:0 14px 14px 0;padding:14px 18px;margin:0 0 18px}
+.note p:last-child,.note ul:last-child{margin-bottom:0}
+.note.warn{background:#FFF6E9;border-left-color:#D9A441}
+.scheme{background:var(--t);border-radius:16px;padding:22px 24px;margin:0 0 20px;font-size:.92em;line-height:1.45}
+.scheme .ln{white-space:pre-wrap}
+.scheme .hd{font-weight:600;color:var(--c);margin-top:2px}
+.scheme .arrow{color:var(--c);font-weight:700;padding:3px 0 3px 2px}
+.tw{overflow-x:auto;margin:0 0 20px;border:1px solid var(--line);border-radius:14px}
+table{border-collapse:collapse;width:100%;font-size:.9em;line-height:1.45}
+th,td{text-align:left;vertical-align:top;padding:10px 14px;border-bottom:1px solid var(--line)}
+th{background:var(--t);font-weight:600}
+th.nw{white-space:nowrap}
+td.nw{white-space:nowrap}
+.ov td{vertical-align:middle}
+.ov td:first-child{min-width:0;width:72px}
+.ov td:nth-child(4){min-width:240px}
+.ov tr.wk td{background:var(--t);font-weight:600;color:var(--c)}
+.ov td.cb{text-align:center}
+.ov input{width:18px;height:18px;accent-color:var(--c)}
+.tag{display:inline-block;padding:2px 10px;border-radius:999px;font-size:.85em;white-space:nowrap}
+.tag.g1{background:#EEF0F7;color:#4C5B8C}.tag.g2{background:#F7EDEF;color:#B5697A}.tag.g3{background:#EDF4EE;color:#5E8763}
+
+tbody tr:last-child td{border-bottom:0}
+td:first-child{font-weight:500;min-width:190px}
+.pager{max-width:860px;margin:22px auto 0;display:flex;justify-content:space-between;gap:12px}
+.pager button{border:1px solid var(--line);background:#fff;border-radius:12px;padding:12px 18px;font:inherit;font-size:15px;cursor:pointer;color:var(--ink);max-width:48%;text-align:left}
+.pager button:hover{border-color:var(--muted)}
+.pager button[hidden]{visibility:hidden;display:block}
+.pager .nx{text-align:right;margin-left:auto}
+.pager small{display:block;color:var(--muted);font-size:12.5px}
+button:focus-visible,a:focus-visible{outline:2px solid var(--c1);outline-offset:2px}
+.menu{display:none}
+@media (max-width:900px){
+  .app{display:block}
+  aside{position:fixed;inset:0 auto 0 0;z-index:20;transform:translateX(-100%);transition:transform .2s;box-shadow:0 0 40px rgba(43,34,48,.15)}
+  aside.open{transform:none}
+  .menu{display:inline-flex;position:sticky;top:0;z-index:10;margin:12px;border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 14px;font:inherit;font-size:15px}
+  main{padding:8px 12px 60px}
+  .pg{padding:28px 22px;border-radius:16px}
+}
+@media (prefers-reduced-motion:reduce){aside{transition:none}}
+@media print{aside,.pager,.menu{display:none}.pg{display:block;border:0;padding:0}main{padding:0}}
+.wk-intro{color:var(--muted)}
+details.reel{border:1px solid var(--line);border-radius:14px;margin:0 0 10px;background:#fff}
+details.reel[open]{border-color:var(--c)}
+details.reel summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:12px 16px;flex-wrap:wrap}
+details.reel summary::-webkit-details-marker{display:none}
+details.reel summary::before{content:'›';font-weight:700;color:var(--c);transition:transform .15s;display:inline-block}
+details.reel[open] summary::before{transform:rotate(90deg)}
+.reel .d{font-weight:600;min-width:28px}
+.reel .f{flex:1;min-width:160px}
+.reel .w{font-size:.8em;font-weight:700;background:var(--c);color:#fff;border-radius:6px;padding:2px 8px}
+.tag{font-size:.75em;border-radius:20px;padding:2px 10px;background:var(--line);white-space:nowrap}
+.tag-охват{background:#EEF0F7;color:#4C5B8C}.tag-подписка{background:#EDF4EE;color:#3F6B46}.tag-доверие{background:#F7EDEF;color:#9A4E60}
+.rb{padding:2px 18px 16px}
+.lbl{font-size:.78em;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:14px 0 6px;display:flex;align-items:center;gap:10px}
+.cp{font:inherit;text-transform:none;letter-spacing:0;font-size:.95em;border:1px solid var(--line);background:#fff;border-radius:8px;padding:2px 10px;cursor:pointer;color:var(--ink)}
+.cp.ok{background:var(--t);border-color:var(--c)}
+.screen{white-space:pre-wrap;background:var(--t);border-radius:12px;padding:14px 16px;font-weight:500}
+.cap{white-space:pre-wrap}
+.cta{font-weight:500}
+.extras{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0 6px}
+.ex{background:#FBF8FA;border:1px solid var(--line);border-radius:14px;padding:4px 16px}
+.ex h4{margin:12px 0 6px}
+.ex ul{padding-left:1.1em}
+@media (max-width:700px){.extras{grid-template-columns:1fr}}
+
+.ov td:first-child{min-width:0;width:44px;font-weight:400}
+.ov td:nth-child(2){width:56px;font-weight:600}
+.ov td:nth-child(4){min-width:240px}
+.ov a.jump{color:var(--ink);text-decoration:none;border-bottom:1px dashed var(--muted)}
+.ov a.jump:hover{color:var(--c);border-color:var(--c)}
+.reel .w.soft{background:var(--line);color:var(--muted);font-weight:500}
+.lbl.big{margin:22px 0 10px}
+h3 .wk{font-weight:500;color:var(--muted);font-size:.85em}
+details.howto{background:#FBF8FA;border:1px solid var(--line);border-radius:14px;padding:4px 18px;margin:0 0 18px}
+details.howto summary{cursor:pointer;font-weight:600;padding:10px 0}
+.reel .more{margin-top:8px}
+.reel .f small,.ov small.fm{display:block;color:var(--muted);font-size:.8em;margin-top:2px}
+
+.ck td:first-child{width:44px;text-align:center;min-width:0;font-weight:400}
+.ck td:nth-child(2){min-width:280px;font-weight:400;width:auto}
+.ck td:nth-child(3){min-width:0;white-space:nowrap}
+.ck td:nth-child(4){min-width:0;white-space:nowrap}
+.ck td{vertical-align:middle}
+.ck input{width:18px;height:18px;accent-color:var(--c)}
+.ck tr.wk td{background:var(--t);font-weight:600;color:var(--c)}
+.seg{border-left:3px solid var(--c);padding:2px 0 2px 14px;margin:0 0 14px}
+.seg .sh{margin:0 0 4px;color:var(--c)}
+.seg .kd{margin:0 0 6px;color:var(--muted);font-size:.9em}
+.seg .tx{margin:0 0 8px;font-weight:500}
+details.howto .screen{max-height:none}
+.tag.pr{background:#EDF4EE;color:#3F6B46}.tag.gp{background:#FFF6E9;color:#8A6417}.tag.qq{background:#EEF0F7;color:#4C5B8C}
+</style>
+</head>
+<body>
+<button class="menu" id="menu">☰ Разделы</button>
+<div class="app">
+<aside id="side">
+  <div class="brand">Первые идеи для контента<small>Алина Греммельспахер · предварительные гипотезы к созвону</small></div>
+  <nav><div class="ni" data-i="0"><button class="nb" data-i="0"><span class="n">·</span><span class="nt">Первые идеи для контента</span></button><div class="subs"><a class="sub" href="#s0-0" data-sec="0">Какие гипотезы проверяем</a><a class="sub" href="#s0-1" data-sec="0">Первая волна публикаций</a><a class="sub" href="#x-reels" data-sec="0">9 идей для Reels</a><a class="sub" href="#x-cta" data-sec="0">Призыв «ТЗ»: как работает, пока бота нет</a><a class="sub" href="#x-yt" data-sec="0">3 идеи для YouTube</a><a class="sub" href="#s0-5" data-sec="0">Резерв: следующим пакетом</a></div></div></nav>
+  <div class="tools">Текст <button id="fm" aria-label="Уменьшить текст">A−</button><button id="fp" aria-label="Увеличить текст">A+</button></div>
+</aside>
+<main>
+<section class="pg" data-i="0" style="--c:var(--c0);--t:var(--t0)"><h2>Первые идеи для контента</h2>
+<p>Идеи, с которых можно начинать сразу, не дожидаясь пятницы. Это предварительные гипотезы, а не согласованный контент-план: после созвона доработаем под выбранное позиционирование и воронку. Выберите две-три темы, которые вам хочется снять, и уберите те, что звучат не в вашем голосе. Нажмите на ролик, чтобы увидеть хук, текст на экране, тезисы, подпись и призыв. Внутри каждого есть кнопка «Подробный сценарий: что говорить» с дословным текстом по секундам и блоком для чтения с телефона.</p>
+<div class="note"><p><strong>Одна просьба до пятницы.</strong> Пока не публикуйте ролики с продающим призывом (мастермайнд, набор). Призыв во всех роликах работает без бота: на слово «ТЗ» вы отвечаете вручную по готовому шаблону (блок ниже).</p></div>
+<h3 id="s0-0">Какие гипотезы проверяем</h3>
+<div class="tw"><table>
+<thead><tr><th>Гипотеза</th><th>Что проверяем</th><th>Ролики</th></tr></thead>
+<tbody>
+<tr><td>Внимание</td><td>Привлекает ли разбор объекта или идеи про интерьер, если добавить вывод для профессии</td><td>«Паймио»</td></tr>
+<tr><td>Профессиональная ценность</td><td>Откликается ли метод работы с клиентом у архитекторов и дизайнеров</td><td>«Кухонный остров», «Покой», «Муж и жена»</td></tr>
+<tr><td>Доверие и личный бренд</td><td>Помогает ли личная история и международный опыт</td><td>«Международные проекты»</td></tr>
+<tr><td>Переход к продукту</td><td>Пишут ли слово в директ и что происходит дальше</td><td>Призыв «ТЗ», переупаковка YouTube-видео</td></tr>
+</tbody></table></div>
+<p>Первые публикации дадут предварительные сигналы: какие темы вызывают интерес, что сохраняют и комментируют, переходят ли люди в профиль и срабатывает ли SalesBot. На основании этих данных выберем темы для следующей волны.</p>
+<h3 id="s0-1">Первая волна публикаций</h3>
+<ol>
+<li><strong>Reels «Клиент просит кухонный остров».</strong> Самый наглядный пример вашего метода.</li>
+<li><strong>Reels «Мне нужен покой».</strong> Показывает переход от желания к проектному критерию.</li>
+<li><strong>Reels «Паймио: взгляд человека».</strong> Продолжает знакомую аудитории тему и даёт вывод для профессии.</li>
+<li><strong>YouTube: переупаковка видео «Психология работы с клиентом».</strong> Не требует съёмки.</li>
+</ol>
+<p>Волна 2: «Муж и жена хотят разного», «Международные проекты», YouTube про причины правок. Волна 3: четыре дополнительных Reels и YouTube про двух заказчиков. Выбирать можно любые идеи в любом порядке: чем больше выбор, тем проще найти то, что звучит в вашем голосе. Формат Reels: около 50 секунд, хук в первые 3 секунды, текст на экране 2–5 слов, один призыв.</p>
+<h3 id="x-reels">9 идей для Reels</h3>
+<div class="lbl big">Рилс — нажмите, чтобы открыть</div><details class="reel" id="r9-0"><summary><span class="d">Волна 1</span><span class="tag tag-подписка">в бот</span><span class="f">«Клиент просит кухонный остров»<small>Профессиональная ценность · Стоп правкам</small></span><span class="w">ТЗ</span></summary><div class="rb"><div class="lbl">Хук (первые 3 секунды) <button class="cp" data-copy>Копировать</button></div><div class="screen">Клиент просит кухонный остров.
+Но прежде чем его проектировать, я хочу понять одну вещь.</div><div class="lbl">Текст на экране <button class="cp" data-copy>Копировать</button></div><div class="screen">Остров — решение.
+А задача какая?</div><div class="lbl">Альтернативный хук (жёстче, на выбор) <button class="cp" data-copy>Копировать</button></div><div class="screen">Клиент попросил кухонный остров. Но я не стала сразу добавлять его в проект.</div><div class="lbl">Основная мысль</div><p class="cap">Клиент часто называет решение, а задача, которую оно должно закрыть, остаётся невидимой.</p><div class="lbl">Тезисы</div><ul>
+<li>Если сразу уточнять габариты, мойку и материалы, мы проектируем элемент, а не жизнь.</li>
+<li>Полезный вопрос: «Что вы хотите, чтобы происходило возле этого острова?»</li>
+<li>Пример для иллюстрации (не утверждение о конкретном клиенте): «Я готовлю, приходит муж, дети делают уроки, мне важно быть с ними». Тогда задача про контакт с семьёй, а решений больше: обеденный стол, открытая гостиная.</li>
+<li>Вывод для профессии: выясняйте сценарий жизни, прежде чем переходить к конструкции.</li>
+</ul>
+<div class="lbl">Что снять</div><p class="cap">Исходную планировку (если есть подходящий проект), расстояния между мебелью, альтернативный вариант и итоговое решение. Если проекта нет, достаточно говорящей головы и 2–3 кадров кухни.</p><div class="lbl">Интонация</div><p class="cap">Разбор конкретной ситуации, уверенно и спокойно.</p><div class="lbl">Подпись <button class="cp" data-copy>Копировать</button></div><p class="cap">Мы привыкли думать, что клиент знает, что ему нужно. Но чаще он называет решение, а не потребность. На следующей встрече попробуйте спросить не про остров, а про то, что должно происходить рядом с ним.</p><div class="lbl">Призыв</div><p class="cta">Напишите «ТЗ» в комментариях или в директ — пришлю видео о том, как составить такое ТЗ 👇</p><details class="howto"><summary>Подробный сценарий: что говорить</summary><p><em>Около 50–55 секунд при спокойном темпе. Говорящая голова в интерьере (кухня или гостиная). Пример про клиента — иллюстрация, не рассказ о конкретном человеке.</em></p><div class="seg"><p class="sh"><strong>0–3 сек</strong> · Хук</p><p class="kd">Кадр: Вы в кадре, смотрите в камеру. На экране: «Остров — решение. А задача какая?»</p><p class="tx">Клиент просит кухонный остров. Но прежде чем его проектировать, я хочу понять одну вещь.</p></div><div class="seg"><p class="sh"><strong>3–14 сек</strong> · Проблема</p><p class="kd">Кадр: Тот же план, можно жестом показать «деталь за деталью».</p><p class="tx">Обычно мы сразу переходим к деталям: габариты, мойка, материалы. Но остров — это уже ответ. А вопрос, на который он отвечает, мы пока не знаем.</p></div><div class="seg"><p class="sh"><strong>14–30 сек</strong> · Вопрос</p><p class="kd">Кадр: Можно вставить 2–3 кадра кухни или остаться в говорящей голове.</p><p class="tx">Поэтому я спрашиваю иначе: «Что вы хотите, чтобы происходило возле этого острова?» И клиент может ответить, например, так: «Вечером я готовлю, муж приходит с работы, дети делают уроки, и мне важно быть с ними рядом».</p></div><div class="seg"><p class="sh"><strong>30–44 сек</strong> · Поворот</p><p class="kd">Кадр: Вы в кадре, спокойно, без нажима.</p><p class="tx">И вдруг оказывается, что речь не про остров, а про контакт с семьёй. А значит, решений становится больше: это может быть остров, а может быть обеденный стол, который продолжает кухню, или открытая гостиная.</p></div><div class="seg"><p class="sh"><strong>44–54 сек</strong> · Вывод и призыв</p><p class="kd">Кадр: На экране: «ТЗ» крупно.</p><p class="tx">Прежде чем проектировать элемент, узнайте, какой сценарий жизни за ним стоит. Это помогает избежать части правок позже. Хотите разобрать, как задавать такие вопросы? Напишите «ТЗ».</p></div><div class="lbl big">Весь текст одним блоком <button class="cp" data-copy>Копировать</button></div><div class="screen">Клиент просит кухонный остров. Но прежде чем его проектировать, я хочу понять одну вещь.
+
+Обычно мы сразу переходим к деталям: габариты, мойка, материалы. Но остров — это уже ответ. А вопрос, на который он отвечает, мы пока не знаем.
+
+Поэтому я спрашиваю иначе: «Что вы хотите, чтобы происходило возле этого острова?» И клиент может ответить, например, так: «Вечером я готовлю, муж приходит с работы, дети делают уроки, и мне важно быть с ними рядом».
+
+И вдруг оказывается, что речь не про остров, а про контакт с семьёй. А значит, решений становится больше: это может быть остров, а может быть обеденный стол, который продолжает кухню, или открытая гостиная.
+
+Прежде чем проектировать элемент, узнайте, какой сценарий жизни за ним стоит. Это помогает избежать части правок позже. Хотите разобрать, как задавать такие вопросы? Напишите «ТЗ».</div></details></div></details>
+<details class="reel" id="r9-1"><summary><span class="d">Волна 1</span><span class="tag tag-подписка">в бот</span><span class="f">«Мне нужен покой»<small>Профессиональная ценность · Стоп правкам</small></span><span class="w">ТЗ</span></summary><div class="rb"><div class="lbl">Хук (первые 3 секунды) <button class="cp" data-copy>Копировать</button></div><div class="screen">Клиент говорит: «Мне нужен покой».
+Но одних этих слов пока недостаточно, чтобы принять проектное решение.</div><div class="lbl">Текст на экране <button class="cp" data-copy>Копировать</button></div><div class="screen">Покой — от чего?</div><div class="lbl">Альтернативный хук (жёстче, на выбор) <button class="cp" data-copy>Копировать</button></div><div class="screen">Когда клиент говорит: «Я хочу, чтобы дома был покой», я не начинаю выбирать бежевый цвет.</div><div class="lbl">Основная мысль</div><p class="cap">Желание нужно перевести в проверяемый критерий для планирования.</p><div class="lbl">Тезисы</div><ul>
+<li>Уточняем: покой от чего, от кого, в какой ситуации.</li>
+<li>Пример для иллюстрации: «Когда я работаю дома, меня отвлекают движения домашних за спиной, и я не могу сосредоточиться».</li>
+<li>Критерий формулируем так: «Во время работы меня не должны отвлекать домашние». Тогда проверяем расположение рабочего места и возможность отделить зону.</li>
+<li>Если клиенту мешает ещё и шум, это отдельное требование, и акустику оцениваем отдельно.</li>
+</ul>
+<div class="lbl">Что снять</div><p class="cap">Интерьерные детали, спокойный свет, закрытое хранение, сравнение двух решений (только то, что подходит вашему примеру: свет, визуальный шум, хранение).</p><div class="lbl">Интонация</div><p class="cap">Спокойная разговорная подача.</p><div class="lbl">Подпись <button class="cp" data-copy>Копировать</button></div><p class="cap">Слову «покой» нужен критерий. Иначе клиент будет бесконечно сравнивать варианты, не понимая, что выбрать.</p><div class="lbl">Призыв</div><p class="cta">Напишите «ТЗ» в комментариях или в директ — пришлю видео о том, как составить такое ТЗ 👇</p><details class="howto"><summary>Подробный сценарий: что говорить</summary><p><em>Около 50–55 секунд. Говорящая голова. Пример со словами клиента — иллюстрация.</em></p><div class="seg"><p class="sh"><strong>0–3 сек</strong> · Хук</p><p class="kd">Кадр: Вы в кадре. На экране: «Покой — от чего?»</p><p class="tx">Клиент говорит: «Мне нужен покой». Но одних этих слов пока недостаточно, чтобы принять проектное решение.</p></div><div class="seg"><p class="sh"><strong>3–14 сек</strong> · Проблема</p><p class="tx">Покой — красивое слово, но на чертеже его не нарисуешь. Поэтому уточняем: покой от чего? От кого? В какой ситуации?</p></div><div class="seg"><p class="sh"><strong>14–30 сек</strong> · Пример</p><p class="kd">Кадр: Можно показать рабочий стол в комнате.</p><p class="tx">Допустим, клиент отвечает: «Когда я работаю дома, за спиной ходят домашние, и я не могу сосредоточиться». Теперь это уже не абстракция, а ситуация, с которой можно работать.</p></div><div class="seg"><p class="sh"><strong>30–45 сек</strong> · Критерий</p><p class="tx">Из неё получается критерий: во время работы меня не должны отвлекать. Дальше мы смотрим, где разместить рабочее место и как отделить зону. А если клиента беспокоит ещё и шум, это отдельное требование, и тогда отдельно думаем про звукоизоляцию.</p></div><div class="seg"><p class="sh"><strong>45–54 сек</strong> · Вывод и призыв</p><p class="kd">Кадр: На экране: «ТЗ».</p><p class="tx">Когда у желания есть критерий, клиенту проще выбрать, а нам проще проверить, получилось ли. Хотите научиться переводить желания в критерии? Напишите «ТЗ».</p></div><div class="lbl big">Весь текст одним блоком <button class="cp" data-copy>Копировать</button></div><div class="screen">Клиент говорит: «Мне нужен покой». Но одних этих слов пока недостаточно, чтобы принять проектное решение.
+
+Покой — красивое слово, но на чертеже его не нарисуешь. Поэтому уточняем: покой от чего? От кого? В какой ситуации?
+
+Допустим, клиент отвечает: «Когда я работаю дома, за спиной ходят домашние, и я не могу сосредоточиться». Теперь это уже не абстракция, а ситуация, с которой можно работать.
+
+Из неё получается критерий: во время работы меня не должны отвлекать. Дальше мы смотрим, где разместить рабочее место и как отделить зону. А если клиента беспокоит ещё и шум, это отдельное требование, и тогда отдельно думаем про звукоизоляцию.
+
+Когда у желания есть критерий, клиенту проще выбрать, а нам проще проверить, получилось ли. Хотите научиться переводить желания в критерии? Напишите «ТЗ».</div></details></div></details>
+<details class="reel" id="r9-2"><summary><span class="d">Волна 1</span><span class="tag tag-охват">охват + мост</span><span class="f">Паймио: взгляд человека<small>Объект → вывод для профессии</small></span><span class="w">ТЗ</span></summary><div class="rb"><div class="lbl">Хук (первые 3 секунды) <button class="cp" data-copy>Копировать</button></div><div class="screen">Почему Аалто думал о потолке глазами человека, который лежит в кровати?</div><div class="lbl">Текст на экране <button class="cp" data-copy>Копировать</button></div><div class="screen">Взгляд человека</div><div class="lbl">Альтернативный хук (жёстче, на выбор) <button class="cp" data-copy>Копировать</button></div><div class="screen">В этом здании интересно не только то, как оно выглядит. Важно, как здесь думали о человеке.</div><div class="lbl">Основная мысль</div><p class="cap">Профессионал смотрит на пространство глазами человека, который будет в нём находиться.</p><div class="lbl">Тезисы</div><ul>
+<li>Расскажите историю Паймио, как в вашем прежнем ролике (10,2 тыс. просмотров, 31 сохранение).</li>
+<li>Вывод для профессии: «Как изменится ваше решение, если посмотреть на пространство глазами человека, который будет в нём жить?»</li>
+<li>Связка с трендами: интерьер может быть модным, но не подходить тому, кто в нём живёт.</li>
+</ul>
+<div class="lbl">Что снять</div><p class="cap">Одна конкретная архитектурная деталь, общий план, ваш комментарий в кадре.</p><div class="lbl">Интонация</div><p class="cap">Визуальный разбор с авторским мнением.</p><div class="lbl">Подпись <button class="cp" data-copy>Копировать</button></div><p class="cap">Мы привыкли оценивать архитектуру глазами: красиво или нет. Но интереснее вопрос, для кого она сделана.</p><div class="lbl">Призыв</div><p class="cta">Вопрос коллегам в комментариях: «Какой вид у вашего клиента из его точки?» Или слово «ТЗ» (см. ниже).</p><details class="howto"><summary>Подробный сценарий: что говорить</summary><p><em>Около 50–55 секунд. Можно в говорящей голове или с кадрами санатория Паймио (фото или кадры из вашего прежнего ролика). В квадратных скобках то, что вы дополняете сами.</em></p><div class="seg"><p class="sh"><strong>0–3 сек</strong> · Хук</p><p class="kd">Кадр: На экране: «Взгляд человека».</p><p class="tx">Почему Аалто думал о потолке глазами человека, который лежит в кровати?</p></div><div class="seg"><p class="sh"><strong>3–14 сек</strong> · Сцена</p><p class="kd">Кадр: Фото или видео палаты Паймио.</p><p class="tx">Санаторий Паймио в Финляндии. Здесь лежали больные люди, и значительную часть времени они смотрели вверх.</p></div><div class="seg"><p class="sh"><strong>14–30 сек</strong> · Ход мысли</p><p class="kd">Кадр: Вы в кадре или то же фото.</p><p class="tx">Аалто проектировал палату так, будто сам лежит на этой кровати. Что он видит? Куда падает свет? [Добавьте деталь из вашего прежнего ролика, например про цвет потолка.]</p></div><div class="seg"><p class="sh"><strong>30–44 сек</strong> · Мысль</p><p class="kd">Кадр: Вы в кадре.</p><p class="tx">Вот этот ход мышления и есть главное. Мы привыкли оценивать архитектуру глазами: красиво или некрасиво. А интереснее вопрос, для кого она сделана.</p></div><div class="seg"><p class="sh"><strong>44–54 сек</strong> · Вывод для профессии и призыв</p><p class="kd">Кадр: На экране: «ТЗ».</p><p class="tx">Для вас, архитекторов и дизайнеров, это вопрос к каждому проекту: как изменится ваше решение, если посмотреть на комнату глазами человека, который будет в ней жить? Если хотите разбирать такие вопросы с клиентом, напишите «ТЗ».</p></div><div class="lbl big">Весь текст одним блоком <button class="cp" data-copy>Копировать</button></div><div class="screen">Почему Аалто думал о потолке глазами человека, который лежит в кровати?
+
+Санаторий Паймио в Финляндии. Здесь лежали больные люди, и значительную часть времени они смотрели вверх.
+
+Аалто проектировал палату так, будто сам лежит на этой кровати. Что он видит? Куда падает свет? [Добавьте деталь из вашего прежнего ролика, например про цвет потолка.]
+
+Вот этот ход мышления и есть главное. Мы привыкли оценивать архитектуру глазами: красиво или некрасиво. А интереснее вопрос, для кого она сделана.
+
+Для вас, архитекторов и дизайнеров, это вопрос к каждому проекту: как изменится ваше решение, если посмотреть на комнату глазами человека, который будет в ней жить? Если хотите разбирать такие вопросы с клиентом, напишите «ТЗ».</div></details></div></details>
+<details class="reel" id="r9-3"><summary><span class="d">Волна 2</span><span class="tag tag-доверие">доверие</span><span class="f">Муж и жена хотят разного<small>Профессиональная ценность · Стоп правкам</small></span><span class="w">ТЗ</span></summary><div class="rb"><div class="lbl">Хук (первые 3 секунды) <button class="cp" data-copy>Копировать</button></div><div class="screen">Одна говорит: «Хочу, чтобы кухня визуально отделялась».
+Другой: «Не хочу уходить от семьи, пока готовлю».
+Что делает архитектор?</div><div class="lbl">Текст на экране <button class="cp" data-copy>Копировать</button></div><div class="screen">Не выбираем, кто прав</div><div class="lbl">Основная мысль</div><p class="cap">Сначала выясняем, что стоит за каждым запросом, а не угадываем потребности за клиентов.</p><div class="lbl">Тезисы</div><ul>
+<li>Пример из вашего видео: женщина не хочет видеть беспорядок на кухне, мужчина не хочет на час уходить от семьи. Это их собственные слова.</li>
+<li>Но в реальных проектах потребности нужно проверять вопросами: что именно имеется в виду, когда это важно.</li>
+<li>Если подтвердится потребность в контакте и изоляции одновременно, решений много: раздвижная перегородка, стеклянная дверь, закрывающаяся рабочая зона.</li>
+</ul>
+<div class="lbl">Что снять</div><p class="cap">Смена двух планов на словах каждого заказчика; на решениях кадры перегородки, стеклянной двери, кухни.</p><div class="lbl">Интонация</div><p class="cap">Разговорный разбор, пауза после «решайте».</p><div class="lbl">Подпись <button class="cp" data-copy>Копировать</button></div><p class="cap">Представьте пару, которая приходит с противоположными запросами. Дело не в том, кто прав. Нужно выяснить, какая потребность стоит за каждым словом.</p><div class="lbl">Призыв</div><p class="cta">Напишите «ТЗ» в комментариях или в директ — пришлю видео о том, как составить такое ТЗ 👇</p><details class="howto"><summary>Подробный сценарий: что говорить</summary><p><em>Около 55 секунд. Говорящая голова. Ситуация взята из вашего видео «Психология работы с клиентом», потребности подаём как гипотезы.</em></p><div class="seg"><p class="sh"><strong>0–6 сек</strong> · Хук</p><p class="kd">Кадр: На экране: «Не выбираем, кто прав».</p><p class="tx">Одна говорит: «Хочу, чтобы кухня визуально отделялась». Другой: «Не хочу уходить от семьи, пока готовлю». Что делает архитектор?</p></div><div class="seg"><p class="sh"><strong>6–18 сек</strong> · Проблема</p><p class="tx">Первый импульс — выбрать, кто прав. Но это тупик. Нам нужно понять, что стоит за каждой фразой.</p></div><div class="seg"><p class="sh"><strong>18–32 сек</strong> · Гипотезы</p><p class="kd">Кадр: Можно показать жестами «она» и «он».</p><p class="tx">Допустим, ей важно не видеть беспорядок, когда она отдыхает в гостиной. А ему важно оставаться рядом с семьёй, пока он готовит. Это пока гипотезы, и мы проверяем их вопросами: что именно вы имеете в виду, когда это важно.</p></div><div class="seg"><p class="sh"><strong>32–46 сек</strong> · Решение</p><p class="kd">Кадр: Можно показать 2–3 кадра: перегородка, стеклянная дверь.</p><p class="tx">Если подтвердится, запрос звучит так: как дать и контакт, и возможность закрыться. И решений сразу много: раздвижная перегородка, стеклянная дверь, кухня с закрывающейся рабочей зоной.</p></div><div class="seg"><p class="sh"><strong>46–55 сек</strong> · Вывод и призыв</p><p class="kd">Кадр: На экране: «ТЗ».</p><p class="tx">Мы не выбираем, кто прав. Мы ищем решение, которое отвечает обоим запросам. Хотите разобрать, как работать сразу с двумя заказчиками? Напишите «ТЗ».</p></div><div class="lbl big">Весь текст одним блоком <button class="cp" data-copy>Копировать</button></div><div class="screen">Одна говорит: «Хочу, чтобы кухня визуально отделялась». Другой: «Не хочу уходить от семьи, пока готовлю». Что делает архитектор?
+
+Первый импульс — выбрать, кто прав. Но это тупик. Нам нужно понять, что стоит за каждой фразой.
+
+Допустим, ей важно не видеть беспорядок, когда она отдыхает в гостиной. А ему важно оставаться рядом с семьёй, пока он готовит. Это пока гипотезы, и мы проверяем их вопросами: что именно вы имеете в виду, когда это важно.
+
+Если подтвердится, запрос звучит так: как дать и контакт, и возможность закрыться. И решений сразу много: раздвижная перегородка, стеклянная дверь, кухня с закрывающейся рабочей зоной.
+
+Мы не выбираем, кто прав. Мы ищем решение, которое отвечает обоим запросам. Хотите разобрать, как работать сразу с двумя заказчиками? Напишите «ТЗ».</div></details></div></details>
+<details class="reel" id="r9-4"><summary><span class="d">Волна 2</span><span class="tag tag-доверие">доверие</span><span class="f">Чему меня научили международные проекты<small>Мой путь · личный бренд</small></span><span class="w">мягкий</span></summary><div class="rb"><div class="lbl">Хук (первые 3 секунды) <button class="cp" data-copy>Копировать</button></div><div class="screen">Я работала над музеем в Катаре, Экспо 2017 и аэропортом Кувейта.
+А потом решила строить собственную практику.
+И вот что поняла про работу с клиентом.</div><div class="lbl">Текст на экране <button class="cp" data-copy>Копировать</button></div><div class="screen">Что поняла</div><div class="lbl">Основная мысль</div><p class="cap">Опыт сложных проектов определяет ваш подход к заказчику сегодня.</p><div class="lbl">Тезисы</div><ul>
+<li>Нужны ваши факты: одна история, что было сложно.</li>
+<li>Что вы поняли про системность и ответственность.</li>
+<li>Как это меняет работу с клиентом сегодня.</li>
+</ul>
+<div class="lbl">Что снять</div><p class="cap">Фото международных проектов, ваш портретный кадр в конце.</p><div class="lbl">Интонация</div><p class="cap">Личная история, тихо и без пафоса.</p><div class="lbl">Подпись <button class="cp" data-copy>Копировать</button></div><p class="cap">По вашей истории, 3–4 предложения.</p><div class="lbl">Призыв</div><p class="cta">Мягкий: «Подписывайтесь, если интересны архитектура, психология пространства и работа с клиентами».</p><details class="howto"><summary>Подробный сценарий: что говорить</summary><p><em>Каркас на 55–60 секунд. Здесь нужны ваши факты, без них сценарий не дописываю. Достаточно рассказать мне голосом 2 минуты, остальное оформлю.</em></p><div class="seg"><p class="sh"><strong>0–8 сек</strong> · Хук</p><p class="kd">Кадр: Вы в кадре. На экране: «Что поняла».</p><p class="tx">Я работала над Национальным музеем Катара, Экспо 2017 и аэропортом Кувейта. А потом решила строить собственную практику. И вот что я поняла про работу с клиентом.</p></div><div class="seg"><p class="sh"><strong>8–25 сек</strong> · Факт 1</p><p class="tx">[ВАШ ФАКТ 1: что было самым сложным на этих проектах. Например, сколько людей участвовало в решениях и как согласовывались изменения. 2–3 предложения.]</p></div><div class="seg"><p class="sh"><strong>25–42 сек</strong> · Факт 2</p><p class="tx">[ВАШ ФАКТ 2: чему это вас научило в работе с людьми, системностью, ответственностью. 2–3 предложения.]</p></div><div class="seg"><p class="sh"><strong>42–52 сек</strong> · Как это влияет сегодня</p><p class="tx">[ОДНА КОНКРЕТНАЯ ПРИВЫЧКА в работе с заказчиком, которая пришла из этого опыта. 1–2 предложения.]</p></div><div class="seg"><p class="sh"><strong>52–58 сек</strong> · Призыв</p><p class="tx">Если вам интересны архитектура, психология пространства и работа с клиентами, подписывайтесь.</p></div><div class="lbl big">Весь текст одним блоком <button class="cp" data-copy>Копировать</button></div><div class="screen">Я работала над Национальным музеем Катара, Экспо 2017 и аэропортом Кувейта. А потом решила строить собственную практику. И вот что я поняла про работу с клиентом.
+
+[ВАШ ФАКТ 1: что было самым сложным на этих проектах. Например, сколько людей участвовало в решениях и как согласовывались изменения. 2–3 предложения.]
+
+[ВАШ ФАКТ 2: чему это вас научило в работе с людьми, системностью, ответственностью. 2–3 предложения.]
+
+[ОДНА КОНКРЕТНАЯ ПРИВЫЧКА в работе с заказчиком, которая пришла из этого опыта. 1–2 предложения.]
+
+Если вам интересны архитектура, психология пространства и работа с клиентами, подписывайтесь.</div></details></div></details>
+<details class="reel" id="r9-5"><summary><span class="d">Волна 3</span><span class="tag tag-охват">охват</span><span class="f">«Красивый интерьер ещё не значит комфортный»<small>Охватный · вопрос зрителю</small></span><span class="w">вопрос</span></summary><div class="rb"><div class="lbl">Хук (первые 3 секунды) <button class="cp" data-copy>Копировать</button></div><div class="screen">Можно создать очень красивый интерьер, в котором человеку будет неудобно жить.</div><div class="lbl">Текст на экране <button class="cp" data-copy>Копировать</button></div><div class="screen">Красиво ≠ удобно</div><div class="lbl">Основная мысль</div><p class="cap">Красота и комфорт не одно и то же, комфорт проверяется жизнью.</p><div class="lbl">Тезисы</div><ul>
+<li>Рабочее место красиво на фото, но человека отвлекает движение за спиной.</li>
+<li>Кухня как из журнала, но не подходит привычкам семьи.</li>
+<li>Смотрим глазами человека, который будет жить.</li>
+</ul>
+<div class="lbl">Что снять</div><p class="cap">Сравнение красивых интерьерных кадров с бытовыми сценариями. В финале вы в кадре.</p><div class="lbl">Интонация</div><p class="cap">Лёгкий разговорный вопрос зрителю.</p><div class="lbl">Подпись <button class="cp" data-copy>Копировать</button></div><p class="cap">Красивый интерьер привлекает внимание. Но удобство пространства проверяется повседневной жизнью. Именно поэтому важно понимать не только, каким человек хочет видеть свой дом, но и то, как он хочет в нём жить. Что для вас важнее при выборе интерьера?</p><div class="lbl">Призыв</div><p class="cta">Вопрос в комментариях: «Что для вас важнее в интерьере: красота или удобство?»</p><details class="howto"><summary>Подробный сценарий: что говорить</summary><p><em>Около 35–40 секунд. Охватный ролик, призыв в виде вопроса зрителю.</em></p><div class="seg"><p class="sh"><strong>0–3 сек</strong> · Хук</p><p class="kd">Кадр: На экране: «Красиво ≠ удобно».</p><p class="tx">Можно создать очень красивый интерьер, в котором человеку будет неудобно жить.</p></div><div class="seg"><p class="sh"><strong>3–14 сек</strong> · Мысль</p><p class="tx">Почему? Потому что красота и комфорт — не одно и то же. Например, рабочее место может идеально смотреться на фотографиях. Но если человек постоянно отвлекается на движение за спиной, ему будет сложно сосредоточиться.</p></div><div class="seg"><p class="sh"><strong>14–28 сек</strong> · Пример</p><p class="tx">Или кухня может выглядеть как картинка из журнала, но не подходить привычкам семьи. Поэтому я предлагаю смотреть на пространство не только глазами дизайнера, но и глазами человека, который будет в нём жить. Как он двигается? Где отдыхает? Что делает каждый день?</p></div><div class="seg"><p class="sh"><strong>28–38 сек</strong> · Вывод и вопрос</p><p class="kd">Кадр: Вы в кадре.</p><p class="tx">Хороший проект — это не только красиво. Это когда пространство подходит конкретному человеку. А для вас что важнее в интерьере: красота или удобство? Напишите в комментариях.</p></div><div class="lbl big">Весь текст одним блоком <button class="cp" data-copy>Копировать</button></div><div class="screen">Можно создать очень красивый интерьер, в котором человеку будет неудобно жить.
+
+Почему? Потому что красота и комфорт — не одно и то же. Например, рабочее место может идеально смотреться на фотографиях. Но если человек постоянно отвлекается на движение за спиной, ему будет сложно сосредоточиться.
+
+Или кухня может выглядеть как картинка из журнала, но не подходить привычкам семьи. Поэтому я предлагаю смотреть на пространство не только глазами дизайнера, но и глазами человека, который будет в нём жить. Как он двигается? Где отдыхает? Что делает каждый день?
+
+Хороший проект — это не только красиво. Это когда пространство подходит конкретному человеку. А для вас что важнее в интерьере: красота или удобство? Напишите в комментариях.</div></details></div></details>
+<details class="reel" id="r9-6"><summary><span class="d">Волна 3</span><span class="tag tag-подписка">в бот</span><span class="f">«Почему правки начинаются до первого чертежа»<small>Профессиональная ценность · Стоп правкам</small></span><span class="w">ТЗ</span></summary><div class="rb"><div class="lbl">Хук (первые 3 секунды) <button class="cp" data-copy>Копировать</button></div><div class="screen">Бесконечные правки в дизайн-проекте могут начинаться ещё до первого чертежа.</div><div class="lbl">Текст на экране <button class="cp" data-copy>Копировать</button></div><div class="screen">Правки начинаются до чертежа</div><div class="lbl">Основная мысль</div><p class="cap">Если не уточнить, что стоит за словами «уют» и «современно», можно сделать красивый проект, который не решает задачу клиента.</p><div class="lbl">Тезисы</div><ul>
+<li>Одно пожелание, два разных уюта.</li>
+<li>Договариваемся о критериях до чертежей.</li>
+<li>Это не гарантирует отсутствие правок, но снижает риск недопонимания.</li>
+</ul>
+<div class="lbl">Что снять</div><p class="cap">Пожелание клиента на экране → два разных визуальных варианта → планировка или проект → вы в кадре.</p><div class="lbl">Интонация</div><p class="cap">Спокойный разбор.</p><div class="lbl">Подпись <button class="cp" data-copy>Копировать</button></div><p class="cap">Не каждую правку можно предотвратить. Пожелания клиента могут меняться, и это нормально. Но иногда проблема возникает раньше, когда дизайнер и заказчик по-разному понимают слова «уют», «современно» или «комфортно». Чем точнее мы формулируем задачу в начале, тем проще принимать решения дальше.</p><div class="lbl">Призыв</div><p class="cta">Напишите «ТЗ» в комментариях или в директ — пришлю видео о том, как составить такое ТЗ 👇</p><details class="howto"><summary>Подробный сценарий: что говорить</summary><p><em>Около 40–45 секунд. Профессиональный ролик, ведёт к методу глубинного ТЗ.</em></p><div class="seg"><p class="sh"><strong>0–3 сек</strong> · Хук</p><p class="kd">Кадр: На экране: «Правки начинаются до чертежа».</p><p class="tx">Бесконечные правки в дизайн-проекте могут начинаться ещё до первого чертежа.</p></div><div class="seg"><p class="sh"><strong>3–16 сек</strong> · Проблема</p><p class="tx">Когда мы слышим от клиента: «Хочу современный интерьер», «Мне нужен уют», «Хочу больше воздуха», легко начать сразу подбирать решения. Но что именно клиент имеет в виду?</p></div><div class="seg"><p class="sh"><strong>16–30 сек</strong> · Пример</p><p class="kd">Кадр: Два разных визуальных варианта «уюта».</p><p class="tx">Для одного уют — это тёплый свет и мягкие ткани. Для другого — тишина, минимум вещей и возможность побыть одному. Если мы не уточнили, что стоит за пожеланием, мы можем сделать красивый проект, который не решает задачу клиента.</p></div><div class="seg"><p class="sh"><strong>30–45 сек</strong> · Вывод и призыв</p><p class="kd">Кадр: На экране: «ТЗ».</p><p class="tx">Поэтому до чертежей важно договориться о критериях: каким должен быть результат и по каким признакам мы поймём, что он подходит. Это не гарантирует отсутствие правок, но помогает снизить риск недопонимания. Хотите узнать, как я работаю с техническим заданием? Напишите «ТЗ».</p></div><div class="lbl big">Весь текст одним блоком <button class="cp" data-copy>Копировать</button></div><div class="screen">Бесконечные правки в дизайн-проекте могут начинаться ещё до первого чертежа.
+
+Когда мы слышим от клиента: «Хочу современный интерьер», «Мне нужен уют», «Хочу больше воздуха», легко начать сразу подбирать решения. Но что именно клиент имеет в виду?
+
+Для одного уют — это тёплый свет и мягкие ткани. Для другого — тишина, минимум вещей и возможность побыть одному. Если мы не уточнили, что стоит за пожеланием, мы можем сделать красивый проект, который не решает задачу клиента.
+
+Поэтому до чертежей важно договориться о критериях: каким должен быть результат и по каким признакам мы поймём, что он подходит. Это не гарантирует отсутствие правок, но помогает снизить риск недопонимания. Хотите узнать, как я работаю с техническим заданием? Напишите «ТЗ».</div></details></div></details>
+<details class="reel" id="r9-7"><summary><span class="d">Волна 3</span><span class="tag tag-подписка">в бот</span><span class="f">«Два вопроса клиенту: не только о стиле»<small>Практичный совет коллегам</small></span><span class="w">сохранить</span></summary><div class="rb"><div class="lbl">Хук (первые 3 секунды) <button class="cp" data-copy>Копировать</button></div><div class="screen">На первой встрече с клиентом я бы не ограничивалась вопросом: «Какой стиль интерьера вам нравится?»</div><div class="lbl">Текст на экране <button class="cp" data-copy>Копировать</button></div><div class="screen">Два вопроса клиенту</div><div class="lbl">Основная мысль</div><p class="cap">Референсы показывают, что нравится визуально, но не как человек хочет жить.</p><div class="lbl">Тезисы</div><ul>
+<li>Вопрос 1: «Как вы хотите чувствовать себя дома?»</li>
+<li>Вопрос 2: «Что вы хотите делать в этом пространстве каждый день?»</li>
+<li>Вместе с визуальными предпочтениями это даёт основу для ТЗ.</li>
+</ul>
+<div class="lbl">Что снять</div><p class="cap">Подборка референсов, затем два вопроса крупным текстом, в финале вы в кадре.</p><div class="lbl">Интонация</div><p class="cap">Практичный совет коллегам.</p><div class="lbl">Подпись <button class="cp" data-copy>Копировать</button></div><p class="cap">Референсы помогают понять визуальные предпочтения клиента. Но для полноценного технического задания нужно узнать и то, как человек живёт. Попробуйте на следующей встрече задать эти два вопроса. Иногда ответы меняют направление всего проекта.</p><div class="lbl">Призыв</div><p class="cta">Сохраните ролик, чтобы вспомнить эти вопросы на следующей встрече. Если хотите больше, напишите «ТЗ».</p><details class="howto"><summary>Подробный сценарий: что говорить</summary><p><em>Около 35–40 секунд. Практичный совет коллегам, призыв сохранить ролик.</em></p><div class="seg"><p class="sh"><strong>0–4 сек</strong> · Хук</p><p class="kd">Кадр: На экране: «Два вопроса клиенту».</p><p class="tx">На первой встрече с клиентом я бы не ограничивалась вопросом: «Какой стиль интерьера вам нравится?»</p></div><div class="seg"><p class="sh"><strong>4–16 сек</strong> · Два вопроса</p><p class="kd">Кадр: Два вопроса крупным текстом.</p><p class="tx">Я бы задала ещё два вопроса. Первый: «Как вы хотите чувствовать себя дома?» Второй: «Что вы хотите делать в этом пространстве каждый день?»</p></div><div class="seg"><p class="sh"><strong>16–30 сек</strong> · Почему</p><p class="tx">Потому что фотографии из Pinterest показывают, что человеку нравится визуально, но не всегда объясняют, как он хочет жить. Возможно, ему нужна не просто красивая гостиная, а место, где вся семья собирается вечером. Или не просто кабинет, а возможность спокойно работать.</p></div><div class="seg"><p class="sh"><strong>30–38 сек</strong> · Вывод</p><p class="tx">Когда мы понимаем и визуальные предпочтения, и реальные сценарии жизни, нам проще принимать проектные решения. Сохраните эти вопросы для следующей встречи с клиентом.</p></div><div class="lbl big">Весь текст одним блоком <button class="cp" data-copy>Копировать</button></div><div class="screen">На первой встрече с клиентом я бы не ограничивалась вопросом: «Какой стиль интерьера вам нравится?»
+
+Я бы задала ещё два вопроса. Первый: «Как вы хотите чувствовать себя дома?» Второй: «Что вы хотите делать в этом пространстве каждый день?»
+
+Потому что фотографии из Pinterest показывают, что человеку нравится визуально, но не всегда объясняют, как он хочет жить. Возможно, ему нужна не просто красивая гостиная, а место, где вся семья собирается вечером. Или не просто кабинет, а возможность спокойно работать.
+
+Когда мы понимаем и визуальные предпочтения, и реальные сценарии жизни, нам проще принимать проектные решения. Сохраните эти вопросы для следующей встречи с клиентом.</div></details></div></details>
+<details class="reel" id="r9-8"><summary><span class="d">Волна 3</span><span class="tag tag-подписка">в бот</span><span class="f">«Немцы доверяют журналам больше, чем Instagram»<small>Клиенты из Европы · из вашего видео</small></span><span class="w">вопрос</span></summary><div class="rb"><div class="lbl">Хук (первые 3 секунды) <button class="cp" data-copy>Копировать</button></div><div class="screen">Немцы доверяют журналам больше, чем Instagram. Что это значит для поиска клиентов?</div><div class="lbl">Текст на экране <button class="cp" data-copy>Копировать</button></div><div class="screen">Журналы vs Instagram</div><div class="lbl">Основная мысль</div><p class="cap">Первые клиенты в новой стране приходят не только из соцсетей.</p><div class="lbl">Тезисы</div><ul>
+<li>Бывшие коллеги знают, что вы умеете.</li>
+<li>Мастера из вашего сегмента (массажисты, парикмахеры, косметологи, стилисты) связаны с вашими клиентами.</li>
+<li>Публикация в журнале как доказательство, Instagram как место, где человек убеждается, что всё в порядке.</li>
+</ul>
+<div class="lbl">Что снять</div><p class="cap">Вы в кадре, при желании вставки: журнал или публикация.</p><div class="lbl">Интонация</div><p class="cap">Рассуждение из личного опыта.</p><div class="lbl">Подпись <button class="cp" data-copy>Копировать</button></div><p class="cap">Когда ищем клиентов в новой стране, первая мысль соцсети. Но по моему опыту, в Германии часто больше доверяют публикациям в журналах. Откуда пришёл ваш первый клиент?</p><div class="lbl">Призыв</div><p class="cta">Вопрос в комментариях: «Откуда пришёл ваш первый клиент?»</p><details class="howto"><summary>Подробный сценарий: что говорить</summary><p><em>Около 50 секунд. Основано на вашем видео «Где искать клиентов архитектору в Германии». Формулируем как ваш опыт, без обобщений. Призыв в виде вопроса.</em></p><div class="seg"><p class="sh"><strong>0–4 сек</strong> · Хук</p><p class="kd">Кадр: На экране: «Журналы vs Instagram».</p><p class="tx">Немцы доверяют журналам больше, чем Instagram. Что это значит для поиска клиентов?</p></div><div class="seg"><p class="sh"><strong>4–20 сек</strong> · Мысль</p><p class="tx">Когда мы ищем клиентов в новой стране, первая мысль — соцсети. Но по моему опыту, в Германии люди часто доверяют публикациям в газетах и журналах больше, чем Instagram.</p></div><div class="seg"><p class="sh"><strong>20–38 сек</strong> · Где искать</p><p class="tx">Поэтому первых клиентов я бы искала не только в ленте. Это бывшие коллеги, которые знают, что вы умеете. Это мастера, которые работают с людьми из вашего сегмента: массажисты, парикмахеры, косметологи, стилисты. У них много связей.</p></div><div class="seg"><p class="sh"><strong>38–52 сек</strong> · Роль Instagram и вопрос</p><p class="tx">А публикация в журнале или статья может стать доказательством вашей экспертности. Instagram в этой схеме — место, куда человек приходит, чтобы убедиться, что всё в порядке. А откуда пришёл ваш первый клиент? Напишите в комментариях.</p></div><div class="lbl big">Весь текст одним блоком <button class="cp" data-copy>Копировать</button></div><div class="screen">Немцы доверяют журналам больше, чем Instagram. Что это значит для поиска клиентов?
+
+Когда мы ищем клиентов в новой стране, первая мысль — соцсети. Но по моему опыту, в Германии люди часто доверяют публикациям в газетах и журналах больше, чем Instagram.
+
+Поэтому первых клиентов я бы искала не только в ленте. Это бывшие коллеги, которые знают, что вы умеете. Это мастера, которые работают с людьми из вашего сегмента: массажисты, парикмахеры, косметологи, стилисты. У них много связей.
+
+А публикация в журнале или статья может стать доказательством вашей экспертности. Instagram в этой схеме — место, куда человек приходит, чтобы убедиться, что всё в порядке. А откуда пришёл ваш первый клиент? Напишите в комментариях.</div></details></div></details>
+<h3 id="x-cta">Призыв «ТЗ»: как работает, пока бота нет</h3>
+<p>Пока бот не собран, мы не опираемся на SalesBot. Призыв во всех роликах один: слово «ТЗ» в комментариях или в директ. Человеку, который написал, вы отвечаете вручную: отправляете ссылку на видео о глубинном ТЗ (переупакованное в первой волне). Объём в первые недели небольшой, поэтому ручной ответ допустим. Если слово «ТЗ» не подходит к теме ролика, замените его вопросом зрителю или просьбой сохранить: призыв должен вытекать из содержания, а не повторяться из ролика в ролик.</p>
+<h4>Шаблон ответа</h4>
+<div class="note"><p>Спасибо, что написали! Вот видео, где я подробно разбираю глубинное ТЗ из 6 шагов: [ссылка]. Если после просмотра появятся вопросы, пишите, отвечу.</p></div>
+<ol>
+<li>Считаем, сколько людей написали слово «ТЗ»: это первый замер интереса.</li>
+<li>Тем, кто ответил на видео, можно задать один вопрос: «Что сложнее всего в работе с клиентом?»</li>
+<li>Когда соберём бота, слово «ТЗ» подключим автоматически, а ручной шаблон останется как запасной вариант.</li>
+</ol>
+<p>Если у вас уже работает слово ВИДЕО или другие кодовые слова в SalesBot, мы разберёмся с ними, когда получим доступ. Сейчас на них не опираемся и в роликах не упоминаем.</p>
+<h3 id="x-yt">3 идеи для YouTube</h3>
+<div class="lbl big">Видео — нажмите, чтобы открыть</div><details class="reel" id="y9-0"><summary><span class="d">Волна 1</span><span class="tag tag-подписка">YouTube</span><span class="f">Переупаковка видео «Психология работы с клиентом»<small>Без съёмки · волна 1</small></span></summary><div class="rb"><div class="lbl">Структура</div><ol>
+<li>Проверка: в видео разобрано глубинное ТЗ из шести шагов (зачем строим, что берём из истории, идём по времени, проверяем на языке клиента, слушаем всех по очереди, переводим в критерии). Поэтому название честное.</li>
+<li>Новое название: «Как составить ТЗ для дизайн-проекта: глубинное ТЗ из 6 шагов (меньше правок)». Исправляем опечатку «клиеном».</li>
+<li>Первая строка описания: «Почему бесконечные правки в дизайн-проекте начинаются ещё до чертежей? Разбираю глубинное ТЗ из 6 шагов».</li>
+<li>Закреплённый комментарий: «Хотите алгоритм глубинного ТЗ одним документом? Ссылка в описании» (когда документ и выдача готовы).</li>
+</ol>
+<div class="lbl">Оговорка</div><p class="cap">Это тест новой упаковки, а не гарантия просмотров.</p><div class="lbl">Призыв</div><p class="cta">Ссылка на алгоритм ТЗ в описании и закрепе.</p><details class="howto"><summary>Подробный сценарий: что говорить</summary><p><em>Съёмка не нужна. Ниже готовые тексты для названия, описания и закреплённого комментария. Таймкоды поставьте по факту (в квадратных скобках).</em></p><div class="seg"><p class="sh"><strong>Название</strong></p><p class="tx">Как составить ТЗ для дизайн-проекта: глубинное ТЗ из 6 шагов (меньше правок)</p></div><div class="seg"><p class="sh"><strong>Описание</strong> · Первые строки (видны без раскрытия)</p><p class="tx">Почему бесконечные правки в дизайн-проекте начинаются ещё до чертежей? Разбираю глубинное ТЗ из 6 шагов: как выяснять реальные потребности клиента и переводить их в критерии для проектирования.</p><p class="tx">Алгоритм глубинного ТЗ одним документом: [ссылка]<br>Предзапись на книгу «Транзит домой»: [ссылка]</p></div><div class="seg"><p class="sh"><strong>Описание</strong> · Главы (таймкоды поставьте по видео)</p><p class="tx">[00:00] Почему возникают правки<br>[00:00] Принцип 1: слово «хочу» не равно потребность<br>[00:00] Принцип 2: один проект не равен одному ТЗ<br>[00:00] Принцип 3: когда начинаем чертить, психология заканчивается<br>[00:00] Шесть жилищных потребностей<br>[00:00] Глубинное ТЗ: шесть шагов<br>[00:00] Что важно помнить</p></div><div class="seg"><p class="sh"><strong>Описание</strong> · Об авторе</p><p class="tx">Меня зовут Алина Греммельспахер. Я архитектор и дизайнер, с 2011 года живу в Германии. Работала над проектами Экспо 2017, Национальный музей Катара, международный аэропорт Кувейта. С 2021 года у меня студия в Мюнхене.</p><p class="tx">Instagram: [ссылка]</p></div><div class="seg"><p class="sh"><strong>Закреплённый комментарий</strong></p><p class="tx">Хотите алгоритм глубинного ТЗ одним документом? Ссылка в описании. А какой вопрос вы задаёте клиенту первым? Напишите в комментариях, мне интересно.</p></div><div class="lbl big">Весь текст одним блоком <button class="cp" data-copy>Копировать</button></div><div class="screen">Как составить ТЗ для дизайн-проекта: глубинное ТЗ из 6 шагов (меньше правок)
+
+Почему бесконечные правки в дизайн-проекте начинаются ещё до чертежей? Разбираю глубинное ТЗ из 6 шагов: как выяснять реальные потребности клиента и переводить их в критерии для проектирования.
+
+Алгоритм глубинного ТЗ одним документом: [ссылка]
+Предзапись на книгу «Транзит домой»: [ссылка]
+
+[00:00] Почему возникают правки
+[00:00] Принцип 1: слово «хочу» не равно потребность
+[00:00] Принцип 2: один проект не равен одному ТЗ
+[00:00] Принцип 3: когда начинаем чертить, психология заканчивается
+[00:00] Шесть жилищных потребностей
+[00:00] Глубинное ТЗ: шесть шагов
+[00:00] Что важно помнить
+
+Меня зовут Алина Греммельспахер. Я архитектор и дизайнер, с 2011 года живу в Германии. Работала над проектами Экспо 2017, Национальный музей Катара, международный аэропорт Кувейта. С 2021 года у меня студия в Мюнхене.
+
+Instagram: [ссылка]
+
+Хотите алгоритм глубинного ТЗ одним документом? Ссылка в описании. А какой вопрос вы задаёте клиенту первым? Напишите в комментариях, мне интересно.</div></details></div></details>
+<details class="reel" id="y9-1"><summary><span class="d">Волна 2</span><span class="tag tag-подписка">YouTube</span><span class="f">Почему заказчик постоянно просит переделать проект: 5 причин, которые стоит проверить архитектору<small>10–12 минут · волна 2</small></span></summary><div class="rb"><div class="lbl">Задача видео</div><p class="cap">Показать практическую ценность вашего метода для профессиональной проблемы.</p><div class="lbl">Хук <button class="cp" data-copy>Копировать</button></div><div class="screen">Клиент утвердил вариант, а через неделю хочет другой. Это его каприз или что-то раньше пошло не так?</div><div class="lbl">Структура</div><ol>
+<li>Разница между изменившимися пожеланиями и изначально невыясненными ожиданиями.</li>
+<li>Недостаточно конкретное техническое задание.</li>
+<li>Разные представления о результате у членов семьи.</li>
+<li>Нет согласованных критериев принятия решений.</li>
+<li>Не проговорены границы проекта и порядок согласований.</li>
+</ol>
+<div class="lbl">Оговорка</div><p class="cap">Это возможные причины, а не универсальное объяснение. «Я не обещаю, что правки исчезнут вовсе, но с понятными критериями их может стать намного меньше».</p><div class="lbl">Призыв</div><p class="cta">Ссылка на материал о глубинном ТЗ (когда согласуем выдачу).</p><details class="howto"><summary>Подробный сценарий: что говорить</summary><p><em>Около 10 минут. Говорящая голова, при желании вставки с примерами. Количество причин (пять) держите в названии и в тексте одинаковым. Если какую-то причину захотите убрать, поменяйте число в названии.</em></p><div class="seg"><p class="sh"><strong>0:00–0:45</strong> · Хук и обещание</p><p class="tx">Привет, ребята! Знакомая ситуация: клиент утвердил вариант, вы довольны, а через неделю он говорит: «А давайте попробуем по-другому». Потом ещё раз. И ещё. Что это — каприз клиента или что-то пошло не так раньше?</p><p class="tx">Сегодня я разберу пять причин, которые стоит проверить, прежде чем решить, что вам достался сложный клиент. Сразу скажу честно: я не обещаю, что правки исчезнут вовсе. Но если вы проверите эти причины, их может стать заметно меньше.</p></div><div class="seg"><p class="sh"><strong>0:45–1:20</strong> · Кто я</p><p class="tx">Меня зовут Алина Греммельспахер. Я архитектор и дизайнер, с 2011 года живу в Германии, у меня два высших профильных образования. Я работала над такими проектами, как Экспо 2017 в Астане, Национальный музей Катара и международный аэропорт Кувейта, а с 2021 года у меня своя студия в Мюнхене. Много лет я занимаюсь тем, как архитекторы и дизайнеры работают с клиентами.</p></div><div class="seg"><p class="sh"><strong>1:20–1:50</strong> · Рамка</p><p class="tx">Приготовьте листик и ручку. По ходу видео отвечайте себе честно: где это происходит у меня? Тогда видео станет не теорией, а разбором вашего последнего проекта. Поехали.</p></div><div class="seg"><p class="sh"><strong>1:50–3:30</strong> · Причина 1: изменились пожелания или не всё выяснили</p><p class="tx">Причина первая. Изменились пожелания, или мы изначально не всё выяснили. Это две разные ситуации, и их легко перепутать.</p><p class="tx">Представьте: вы согласовали планировку, а клиент говорит: «Мне теперь нужно больше места для гостей». Что это? Возможно, жизнь действительно изменилась. А возможно, он сразу об этом думал, но мы не спросили. Как понять? Откройте техническое задание и посмотрите: было это там или нет. Если не было и ситуация действительно новая, это изменение, и его нужно спокойно обсудить: сроки, объём, стоимость. А если потребность была, но осталась невыясненной, значит, правка родилась у нас.</p></div><div class="seg"><p class="sh"><strong>3:30–5:10</strong> · Причина 2: ТЗ недостаточно конкретное</p><p class="tx">Причина вторая. Техническое задание недостаточно конкретное. «Светлая просторная гостиная», «хочу уютно», «мне нужен покой». Это красивые слова, но по ним нельзя проверить, получился ли результат.</p><p class="tx">За фразой «хочу уютно» может стоять что угодно: потребность в контроле, потребность в контакте, сенсорный комфорт. Поэтому правильно не записывать фразу, а уточнять: что именно вы имеете в виду? Когда вы в последний раз чувствовали это дома? Что тогда происходило? Из ответов вы собираете уже не пожелание, а критерий. Например, не «покой», а «во время работы меня не должны отвлекать домашние».</p></div><div class="seg"><p class="sh"><strong>5:10–6:40</strong> · Причина 3: разные представления у членов семьи</p><p class="tx">Причина третья. У членов семьи разные представления о результате. Часто на встречу приходят вдвоём или втроём, и мы слушаем того, чей голос громче. А потом вдруг оказывается, что второй человек не согласен.</p><p class="tx">Один проект не равен одному ТЗ. Поэтому каждого стоит выслушать отдельно: можно дать анкету каждому, можно провести короткие интервью, а потом сравнить ответы. Не для того, чтобы выбрать победителя, а чтобы увидеть, где потребности совпадают, а где различаются.</p></div><div class="seg"><p class="sh"><strong>6:40–8:00</strong> · Причина 4: нет согласованных критериев</p><p class="tx">Причина четвёртая. Нет согласованных критериев принятия решений. Если у клиента нет критериев, он будет бесконечно сравнивать всё со всем. Каждый вариант хорош по-своему, и выбрать невозможно.</p><p class="tx">Критерии могут быть очень простыми. Видно ли из кухни гостиную, где дети делают уроки? Слышно ли шум из кухни, когда дети идут спать? Есть ли у работающего дома человека место, куда никто не заходит? Когда критерии согласованы, любую новую идею мы просто проверяем по ним. Подходит — пробуем. Не подходит — даже не рисуем.</p></div><div class="seg"><p class="sh"><strong>8:00–9:10</strong> · Причина 5: не проговорены границы</p><p class="tx">Причина пятая. Не проговорены границы проекта и порядок согласований. Сколько кругов правок входит в работу? Как мы утверждаем этапы? Что считается изменением, а что уточнением? Если об этом не договориться в начале, каждая новая идея воспринимается как неожиданность, и с одной стороны, и с другой.</p><p class="tx">Это не про недоверие, а про ясность. Спокойная договорённость в начале экономит много нервов в конце.</p></div><div class="seg"><p class="sh"><strong>9:10–10:10</strong> · Оговорка и задание</p><p class="tx">Важная оговорка. Эти пять причин — не универсальное объяснение всех правок. Бывает, что клиент действительно меняет решения, и это нормально. Но прежде чем решить, что вам достался сложный клиент, проверьте, нет ли причины на нашей стороне.</p><p class="tx">Ваше задание. Возьмите последний проект с большим количеством правок и пройдитесь по пяти причинам. Какая из них ваша? Напишите в комментариях номер, мне интересно.</p></div><div class="seg"><p class="sh"><strong>10:10–10:50</strong> · Призыв</p><p class="tx">Многие из этих причин закрывает метод, который я называю глубинным ТЗ. Он состоит из шести шагов, и я разобрала его в отдельном видео, ссылка в описании. Спасибо, что были со мной. До новых встреч, ребята.</p></div><div class="lbl big">Весь текст одним блоком <button class="cp" data-copy>Копировать</button></div><div class="screen">Привет, ребята! Знакомая ситуация: клиент утвердил вариант, вы довольны, а через неделю он говорит: «А давайте попробуем по-другому». Потом ещё раз. И ещё. Что это — каприз клиента или что-то пошло не так раньше?
+
+Сегодня я разберу пять причин, которые стоит проверить, прежде чем решить, что вам достался сложный клиент. Сразу скажу честно: я не обещаю, что правки исчезнут вовсе. Но если вы проверите эти причины, их может стать заметно меньше.
+
+Меня зовут Алина Греммельспахер. Я архитектор и дизайнер, с 2011 года живу в Германии, у меня два высших профильных образования. Я работала над такими проектами, как Экспо 2017 в Астане, Национальный музей Катара и международный аэропорт Кувейта, а с 2021 года у меня своя студия в Мюнхене. Много лет я занимаюсь тем, как архитекторы и дизайнеры работают с клиентами.
+
+Приготовьте листик и ручку. По ходу видео отвечайте себе честно: где это происходит у меня? Тогда видео станет не теорией, а разбором вашего последнего проекта. Поехали.
+
+Причина первая. Изменились пожелания, или мы изначально не всё выяснили. Это две разные ситуации, и их легко перепутать.
+
+Представьте: вы согласовали планировку, а клиент говорит: «Мне теперь нужно больше места для гостей». Что это? Возможно, жизнь действительно изменилась. А возможно, он сразу об этом думал, но мы не спросили. Как понять? Откройте техническое задание и посмотрите: было это там или нет. Если не было и ситуация действительно новая, это изменение, и его нужно спокойно обсудить: сроки, объём, стоимость. А если потребность была, но осталась невыясненной, значит, правка родилась у нас.
+
+Причина вторая. Техническое задание недостаточно конкретное. «Светлая просторная гостиная», «хочу уютно», «мне нужен покой». Это красивые слова, но по ним нельзя проверить, получился ли результат.
+
+За фразой «хочу уютно» может стоять что угодно: потребность в контроле, потребность в контакте, сенсорный комфорт. Поэтому правильно не записывать фразу, а уточнять: что именно вы имеете в виду? Когда вы в последний раз чувствовали это дома? Что тогда происходило? Из ответов вы собираете уже не пожелание, а критерий. Например, не «покой», а «во время работы меня не должны отвлекать домашние».
+
+Причина третья. У членов семьи разные представления о результате. Часто на встречу приходят вдвоём или втроём, и мы слушаем того, чей голос громче. А потом вдруг оказывается, что второй человек не согласен.
+
+Один проект не равен одному ТЗ. Поэтому каждого стоит выслушать отдельно: можно дать анкету каждому, можно провести короткие интервью, а потом сравнить ответы. Не для того, чтобы выбрать победителя, а чтобы увидеть, где потребности совпадают, а где различаются.
+
+Причина четвёртая. Нет согласованных критериев принятия решений. Если у клиента нет критериев, он будет бесконечно сравнивать всё со всем. Каждый вариант хорош по-своему, и выбрать невозможно.
+
+Критерии могут быть очень простыми. Видно ли из кухни гостиную, где дети делают уроки? Слышно ли шум из кухни, когда дети идут спать? Есть ли у работающего дома человека место, куда никто не заходит? Когда критерии согласованы, любую новую идею мы просто проверяем по ним. Подходит — пробуем. Не подходит — даже не рисуем.
+
+Причина пятая. Не проговорены границы проекта и порядок согласований. Сколько кругов правок входит в работу? Как мы утверждаем этапы? Что считается изменением, а что уточнением? Если об этом не договориться в начале, каждая новая идея воспринимается как неожиданность, и с одной стороны, и с другой.
+
+Это не про недоверие, а про ясность. Спокойная договорённость в начале экономит много нервов в конце.
+
+Важная оговорка. Эти пять причин — не универсальное объяснение всех правок. Бывает, что клиент действительно меняет решения, и это нормально. Но прежде чем решить, что вам достался сложный клиент, проверьте, нет ли причины на нашей стороне.
+
+Ваше задание. Возьмите последний проект с большим количеством правок и пройдитесь по пяти причинам. Какая из них ваша? Напишите в комментариях номер, мне интересно.
+
+Многие из этих причин закрывает метод, который я называю глубинным ТЗ. Он состоит из шести шагов, и я разобрала его в отдельном видео, ссылка в описании. Спасибо, что были со мной. До новых встреч, ребята.</div></details></div></details>
+<details class="reel" id="y9-2"><summary><span class="d">Волна 3</span><span class="tag tag-подписка">YouTube</span><span class="f">Муж и жена хотят разного: как согласовать потребности двух заказчиков<small>10–12 минут · волна 3</small></span></summary><div class="rb"><div class="lbl">Задача видео</div><p class="cap">Отдельная тема от ролика про причины правок. Фокус на согласовании разных потребностей двух людей.</p><div class="lbl">Хук <button class="cp" data-copy>Копировать</button></div><div class="screen">История с кухней из рилса «Муж и жена хотят разного», со словами «одна говорит… другой говорит…».</div><div class="lbl">Структура</div><ol>
+<li>Один проект не равен одному ТЗ.</li>
+<li>Слушаем каждого по очереди: анкеты или отдельные интервью.</li>
+<li>Не выбираем, кто прав, а выясняем, какая потребность стоит за каждым запросом.</li>
+<li>Как проверить гипотезы вопросами.</li>
+<li>Как превратить результат в проектные критерии.</li>
+</ol>
+<div class="lbl">Оговорка</div><p class="cap">«Если разговор уходит в глубинный конфликт пары, это уже не наша территория».</p><div class="lbl">Призыв</div><p class="cta">Ссылка на материал о глубинном ТЗ.</p><details class="howto"><summary>Подробный сценарий: что говорить</summary><p><em>Около 10 минут. Говорящая голова. Это другая тема, чем видео про причины правок: здесь только согласование потребностей двух людей. Ситуация с кухней взята из вашего видео «Психология работы с клиентом».</em></p><div class="seg"><p class="sh"><strong>0:00–0:50</strong> · Хук</p><p class="tx">Привет, ребята! Представьте: к вам приходит пара. Она говорит: «Хочу, чтобы кухня визуально отделялась от гостиной, я не хочу видеть беспорядок, когда отдыхаю». Он говорит: «А я не хочу уходить от семьи, пока готовлю». И оба смотрят на вас: решайте.</p><p class="tx">Что делать? Сегодня разберём, как согласовывать потребности двух заказчиков, не превращаясь в судью.</p></div><div class="seg"><p class="sh"><strong>0:50–1:20</strong> · Кто я</p><p class="tx">Меня зовут Алина Греммельспахер. Я архитектор и дизайнер, с 2011 года живу в Германии. Работала над Экспо 2017, Национальным музеем Катара, международным аэропортом Кувейта, а с 2021 года у меня своя студия. И много лет я смотрю на то, как проекты рождаются из разговора с людьми.</p></div><div class="seg"><p class="sh"><strong>1:20–1:50</strong> · Рамка</p><p class="tx">Приготовьте листик и ручку. Мы пройдём пять шагов, и вы сможете применить их уже на следующей встрече. Поехали.</p></div><div class="seg"><p class="sh"><strong>1:50–3:10</strong> · Шаг 1: один проект не равен одному ТЗ</p><p class="tx">Шаг первый. Запомните: один проект не равен одному ТЗ. Если приходят двое заказчиков, у нас на самом деле два набора потребностей, а не один. Иногда они совпадают, иногда нет. И это нормально: два взрослых человека видят дом по-разному.</p><p class="tx">Проблема начинается, когда мы этого не замечаем и записываем одно общее пожелание. Тогда в ТЗ попадает то, что сказал тот, кто говорит громче, и мы начинаем работать на одного человека.</p></div><div class="seg"><p class="sh"><strong>3:10–4:40</strong> · Шаг 2: слушаем каждого по очереди</p><p class="tx">Шаг второй. Слушаем каждого по очереди. Есть два простых способа. Первый: анкеты, которые каждый заполняет отдельно, а потом вы сравниваете ответы. Второй: короткие отдельные интервью. Второй сложнее по времени, но он даёт больше.</p><p class="tx">Если в паре кто-то доминирует, обязательно дайте второму человеку отдельное пространство для ответа. Не потому, что один прав, а второй нет, а потому что иначе мы услышим только одну половину проекта.</p></div><div class="seg"><p class="sh"><strong>4:40–6:20</strong> · Шаг 3: ищем потребность, а не побеждающую сторону</p><p class="tx">Шаг третий. Не выбираем, кто прав, а ищем потребность за каждым запросом. Вернёмся к нашей паре. Она не хочет видеть беспорядок, когда отдыхает. Он не хочет на час уходить от семьи, пока готовит. Это не взаимоисключающие запросы, если посмотреть глубже.</p><p class="tx">У неё может быть потребность в зрительном покое. У него — в контакте с семьёй. Тогда задача звучит иначе: как дать и контакт, и возможность закрыться? И решений становится много: раздвижная перегородка, стеклянная дверь, кухня с закрывающейся рабочей зоной. Нам не нужно выбирать, кто прав. Нам нужно найти решение, которое отвечает обоим запросам.</p></div><div class="seg"><p class="sh"><strong>6:20–7:40</strong> · Шаг 4: проверяем гипотезы вопросами</p><p class="tx">Шаг четвёртый. То, что я сейчас назвала потребностями, пока только гипотезы. Мы не знаем, что на самом деле стоит за словами, пока не спросим. Поэтому вопросы. Например: «Расскажите, как обычно проходит ваш вечер на кухне». «Когда вам особенно важно закрыться?» «Что вы потеряете, если кухня будет полностью открытой?»</p><p class="tx">Важно слушать не только ответ, но и то, как человек его говорит. Ваша задача не угадать, а понять.</p></div><div class="seg"><p class="sh"><strong>7:40–8:50</strong> · Шаг 5: переводим в проектные критерии</p><p class="tx">Шаг пятый. Всё, что мы узнали, переводим в критерии для планирования. Например: из кухни видно гостиную, где дети делают уроки. И есть возможность закрыть рабочую зону на время готовки. Теперь у нас не два спорящих пожелания, а понятные критерии, по которым мы проверяем любой вариант.</p></div><div class="seg"><p class="sh"><strong>8:50–9:40</strong> · Оговорка</p><p class="tx">Важная оговорка. Я не считаю, что архитектор должен лучше клиента знать, чего он хочет. Наша задача — экспертиза в пространстве, а не в отношениях пары. Если разговор уходит в глубинный конфликт, это уже не наша территория, и пространством его не решить. Мы можем создать условия, но не заменим разговор двух людей.</p></div><div class="seg"><p class="sh"><strong>9:40–10:30</strong> · Задание и призыв</p><p class="tx">Ваше задание. На следующей встрече с парой задайте каждому один и тот же вопрос по отдельности и сравните ответы. Что вы увидели? Напишите в комментариях.</p><p class="tx">А метод, который я называю глубинным ТЗ, подробно разобран в моём отдельном видео, ссылка в описании. Спасибо, что были со мной. До новых встреч, ребята.</p></div><div class="lbl big">Весь текст одним блоком <button class="cp" data-copy>Копировать</button></div><div class="screen">Привет, ребята! Представьте: к вам приходит пара. Она говорит: «Хочу, чтобы кухня визуально отделялась от гостиной, я не хочу видеть беспорядок, когда отдыхаю». Он говорит: «А я не хочу уходить от семьи, пока готовлю». И оба смотрят на вас: решайте.
+
+Что делать? Сегодня разберём, как согласовывать потребности двух заказчиков, не превращаясь в судью.
+
+Меня зовут Алина Греммельспахер. Я архитектор и дизайнер, с 2011 года живу в Германии. Работала над Экспо 2017, Национальным музеем Катара, международным аэропортом Кувейта, а с 2021 года у меня своя студия. И много лет я смотрю на то, как проекты рождаются из разговора с людьми.
+
+Приготовьте листик и ручку. Мы пройдём пять шагов, и вы сможете применить их уже на следующей встрече. Поехали.
+
+Шаг первый. Запомните: один проект не равен одному ТЗ. Если приходят двое заказчиков, у нас на самом деле два набора потребностей, а не один. Иногда они совпадают, иногда нет. И это нормально: два взрослых человека видят дом по-разному.
+
+Проблема начинается, когда мы этого не замечаем и записываем одно общее пожелание. Тогда в ТЗ попадает то, что сказал тот, кто говорит громче, и мы начинаем работать на одного человека.
+
+Шаг второй. Слушаем каждого по очереди. Есть два простых способа. Первый: анкеты, которые каждый заполняет отдельно, а потом вы сравниваете ответы. Второй: короткие отдельные интервью. Второй сложнее по времени, но он даёт больше.
+
+Если в паре кто-то доминирует, обязательно дайте второму человеку отдельное пространство для ответа. Не потому, что один прав, а второй нет, а потому что иначе мы услышим только одну половину проекта.
+
+Шаг третий. Не выбираем, кто прав, а ищем потребность за каждым запросом. Вернёмся к нашей паре. Она не хочет видеть беспорядок, когда отдыхает. Он не хочет на час уходить от семьи, пока готовит. Это не взаимоисключающие запросы, если посмотреть глубже.
+
+У неё может быть потребность в зрительном покое. У него — в контакте с семьёй. Тогда задача звучит иначе: как дать и контакт, и возможность закрыться? И решений становится много: раздвижная перегородка, стеклянная дверь, кухня с закрывающейся рабочей зоной. Нам не нужно выбирать, кто прав. Нам нужно найти решение, которое отвечает обоим запросам.
+
+Шаг четвёртый. То, что я сейчас назвала потребностями, пока только гипотезы. Мы не знаем, что на самом деле стоит за словами, пока не спросим. Поэтому вопросы. Например: «Расскажите, как обычно проходит ваш вечер на кухне». «Когда вам особенно важно закрыться?» «Что вы потеряете, если кухня будет полностью открытой?»
+
+Важно слушать не только ответ, но и то, как человек его говорит. Ваша задача не угадать, а понять.
+
+Шаг пятый. Всё, что мы узнали, переводим в критерии для планирования. Например: из кухни видно гостиную, где дети делают уроки. И есть возможность закрыть рабочую зону на время готовки. Теперь у нас не два спорящих пожелания, а понятные критерии, по которым мы проверяем любой вариант.
+
+Важная оговорка. Я не считаю, что архитектор должен лучше клиента знать, чего он хочет. Наша задача — экспертиза в пространстве, а не в отношениях пары. Если разговор уходит в глубинный конфликт, это уже не наша территория, и пространством его не решить. Мы можем создать условия, но не заменим разговор двух людей.
+
+Ваше задание. На следующей встрече с парой задайте каждому один и тот же вопрос по отдельности и сравните ответы. Что вы увидели? Напишите в комментариях.
+
+А метод, который я называю глубинным ТЗ, подробно разобран в моём отдельном видео, ссылка в описании. Спасибо, что были со мной. До новых встреч, ребята.</div></details></div></details>
+<h3 id="s0-5">Резерв: следующим пакетом</h3>
+<ul>
+<li>«Что мы разбираем на диагностике» (закулисье, призыв РАЗБОР) после согласования воронки.</li>
+<li>«Что такое архитектурная психология и как применять её в работе с заказчиком». Длинное видео.</li>
+<li>Трансформация с цифрой: ваш реальный проект с метражом, бюджетом и результатом (нужны ваши данные).</li>
+</ul>
+</section>
+<div class="pager"><button class="pv" id="pv"></button><button class="nx" id="nx"></button></div>
+</main>
+</div>
+<script>
+(function(){
+  try{if('scrollRestoration' in history)history.scrollRestoration='manual';}catch(e){}
+  var pages=[].slice.call(document.querySelectorAll('.pg'));
+  var items=[].slice.call(document.querySelectorAll('.ni'));
+  var N=pages.length, cur=0;
+  var colors=getComputedStyle(document.documentElement);
+  items.forEach(function(it,i){it.style.setProperty('--c','var(--c'+(i%6)+')');it.style.setProperty('--t','var(--t'+(i%6)+')');});
+  function label(i){var b=items[i].querySelector('.nt');return b?b.textContent:'';}
+  function show(i,keep){
+    if(i<0||i>=N)return; cur=i;
+    pages.forEach(function(p,k){p.classList.toggle('on',k===i)});
+    items.forEach(function(p,k){p.classList.toggle('on',k===i)});
+    var pv=document.getElementById('pv'),nx=document.getElementById('nx');
+    pv.hidden=i===0; nx.hidden=i===N-1;
+    pv.innerHTML=i>0?'<small>Назад</small>'+label(i-1):'';
+    nx.innerHTML=i<N-1?'<small>Дальше</small>'+label(i+1):'';
+    if(!keep){window.scrollTo(0,0);}
+    try{history.replaceState(null,'','#b'+i);}catch(e){}
+    document.getElementById('side').classList.remove('open');
+  }
+  document.querySelectorAll('.nb').forEach(function(b){b.addEventListener('click',function(){show(+b.dataset.i)})});
+  document.querySelectorAll('.sub').forEach(function(a){a.addEventListener('click',function(e){
+    e.preventDefault(); show(+a.dataset.sec,true);
+    var t=document.getElementById(a.getAttribute('href').slice(1)); if(t)t.scrollIntoView({block:'start'});
+  })});
+  document.getElementById('pv').onclick=function(){show(cur-1)};
+  document.getElementById('nx').onclick=function(){show(cur+1)};
+  document.addEventListener('keydown',function(e){
+    if(e.target.tagName==='INPUT')return;
+    if(e.key==='ArrowRight')show(cur+1); if(e.key==='ArrowLeft')show(cur-1);
+  });
+  document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(e){
+    e.preventDefault(); var box=b.parentElement.nextElementSibling; var txt=box?box.innerText:'';
+    try{navigator.clipboard.writeText(txt).then(function(){b.textContent='Скопировано';b.classList.add('ok');setTimeout(function(){b.textContent='Копировать';b.classList.remove('ok')},1500)});}catch(err){}
+  })});
+  document.querySelectorAll('input[data-k]').forEach(function(c){
+    try{c.checked=localStorage.getItem('al-'+c.dataset.k)==='1';}catch(e){}
+    c.addEventListener('change',function(){try{localStorage.setItem('al-'+c.dataset.k,c.checked?'1':'0');}catch(e){}});
+  });
+  document.querySelectorAll('a.jump').forEach(function(a){a.addEventListener('click',function(e){
+    e.preventDefault(); var d=document.getElementById(a.dataset.c); if(d){d.open=true; d.scrollIntoView({block:'start'});}
+  })});
+  var fs=17;
+  function setfs(v){fs=Math.max(14,Math.min(24,v));document.documentElement.style.setProperty('--fs',fs+'px');}
+  document.getElementById('fp').onclick=function(){setfs(fs+1)};
+  document.getElementById('fm').onclick=function(){setfs(fs-1)};
+  document.getElementById('menu').onclick=function(){document.getElementById('side').classList.toggle('open')};
+  var m=location.hash.match(/^#b(\d+)$/); show(m?+m[1]:0);
+})();
+</script>
+</body>
+</html>
